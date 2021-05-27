@@ -14,6 +14,31 @@ server {
     listen 80 default_server;
 }
 
+# create file /etc/nginx/sites-available/tinyflutterteam.ssl.conf
+server {
+    server_name tinyflutterteam.com;
+    root /var/www/html/tinyflutterteam.com/web;
+    index index.html index.htm;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location ^~ /.well-known/pki-validation/ {
+        allow all;
+        default_type "text/plain";
+    }
+
+   # listen 80 default_server;
+
+    listen               443 ssl;
+
+
+    ssl                  on;
+    ssl_certificate      /etc/ssl/tinyflutterteam.com/certificate.crt;
+    ssl_certificate_key  /etc/ssl/tinyflutterteam.com/private.key;
+}
+
+
 sudo ln -s /etc/nginx/sites-available/tinyflutterteam.conf /etc/nginx/sites-enabled/tinyflutterteam.conf
+sudo ln -s /etc/nginx/sites-available/tinyflutterteam.ssl.conf /etc/nginx/sites-enabled/tinyflutterteam.ssl.conf
 sudo nginx -t
 sudo systemctl restart nginx
