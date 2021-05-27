@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // flutter build web
 
@@ -7,11 +8,19 @@ void main() {
   runApp(MyApp());
 }
 
+_launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    print('Could not launch $url');
+  }
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Tiny Flutter Team - Great Flutter App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -33,21 +42,24 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Color.fromARGB(255, 5, 19, 48),
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                "assets/images/background_flutterteam_sologan_black_dark_version_500_161.png",
-                height: 161,
-                width: 500,
-                fit: BoxFit.contain,
-              ),
-              InkWell(
-                child: Row(
+      body: InkWell(
+        onTap: () {
+          _launchURL("https://github.com/simplesoft-duongdt3");
+        },
+        child: Container(
+          color: Color.fromARGB(255, 5, 19, 48),
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/images/background_flutterteam_sologan_black_dark_version_500_160.gif",
+                  height: 160,
+                  width: 500,
+                  fit: BoxFit.contain,
+                ),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     FaIcon(
@@ -58,19 +70,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       size: Size(16, 1),
                     ),
                     Text(
-                      "GitHub Profile",
+                      "GitHub",
                       style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
+                        fontSize: 13,
+                        color: Colors.white70,
                       ),
                     ),
                   ],
                 ),
-                onTap: () {
-                  print("Tap");
-                },
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -1,0 +1,4 @@
+flutter run -d chrome
+flutter build web --web-renderer html
+# --web-renderer html | --web-renderer canvaskit 
+python -m http.server 8000
