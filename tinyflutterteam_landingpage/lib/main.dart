@@ -61,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     FaIcon(
                       FontAwesomeIcons.github,
