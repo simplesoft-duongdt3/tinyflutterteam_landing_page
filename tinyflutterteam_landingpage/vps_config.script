@@ -1,10 +1,8 @@
-flutter build web --web-renderer canvaskit
+# adduser admin
+# usermod -aG sudo admin 
+# su - admin
+$ sudo whoami
 
-docker build -t tinyflutterteam.com:v1 .
-docker images
-
-docker run -d -p 80:80 tinyflutterteam.com:v1
-curl localhost:80
 
 # create file /etc/nginx/sites-available/tinyflutterteam.conf
 server {
